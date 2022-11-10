@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.greta.soutenance2application.VinylController">
+   <children>
+      <MenuBar layoutX="2.0" layoutY="7.0" prefHeight="26.0" prefWidth="924.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Fichier">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Enregistrer dans un fichier"  onAction="#EnregistreFichier" />
+                  <MenuItem mnemonicParsing="false" text="Envoi Couriel" onAction="#SendEmail" />
+                  <MenuItem mnemonicParsing="false" text="Enregistrer dans la base de données" onAction="#EnregisterBaseDonne" />
+                  <MenuItem mnemonicParsing="false" text="Quitter"  onAction="#quitter" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Paramétres" onAction="#parametresDonne">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Base de données" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Aide">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Mode d'emploi" onAction="#DisplayModeEmploi" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="260.0" layoutY="40.0" prefHeight="35.0" prefWidth="365.0" text="Recherche Vinyle Application" textFill="#817979">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="124.0" text="Titre">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="21.0" layoutY="173.0" text="Genre">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="21.0" layoutY="225.0" text="Date">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="21.0" layoutY="275.0" text="Prix">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TextField fx:id="titre" layoutX="96.0" layoutY="120.0" prefHeight="26.0" prefWidth="194.0" promptText="Selectionnez un titre" />
+
+       <ComboBox fx:id="genreCheck" layoutX="96.0" layoutY="169.0" onAction="#onClickComboCheck" prefHeight="26.0" prefWidth="194.0" promptText="Selectionnez un genre" style="-fx-background-color: #ced4da;">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+                   <String fx:id="SUG" fx:value="Selectionner un genre" />
+                   <String fx:id="Rock" fx:value="Rock" />
+                   <String fx:id="Blues" fx:value="Blues" />
+                   <String fx:id="Jazz" fx:value="Jazz" />
+                   <String fx:id="Reggae" fx:value="Reggae" />
+                   <String fx:id="Funk" fx:value="Funk" />
+                   <String fx:id="Electro" fx:value="Electro" />
+                   <String fx:id="DubStep" fx:value="DubStep" />
+                   <String fx:id="Soul" fx:value="Soul" />
+                   <String fx:id="Diverse" fx:value="Diverse" />
+
+               </FXCollections>
+           </items>
+           <value>
+               <String fx:id="SUGS" fx:value="Selectionner un genre" />
+           </value>
+       </ComboBox>
+
+
+
+      <DatePicker fx:id="datePick" layoutX="98.0" layoutY="221.0" onAction="#onDateCheck" prefHeight="26.0" prefWidth="194.0" promptText="Selectionnez une date " />
+      <TextField fx:id="minprix" layoutX="96.0" layoutY="262.0" prefHeight="35.0" prefWidth="70.0" promptText="Prix Min" />
+      <TextField fx:id="maxprix" layoutX="209.0" layoutY="261.0" prefHeight="35.0" prefWidth="70.0" promptText="Prix Max" />
+
+      <CheckBox fx:id="discogs" layoutX="568.0" layoutY="111.0" mnemonicParsing="false" text="Discorgs.com" />
+      <CheckBox fx:id="fnac" layoutX="569.0" layoutY="142.0" mnemonicParsing="false" text="Fnac.com" />
+      <CheckBox fx:id="vicorner" layoutX="569.0" layoutY="173.0" mnemonicParsing="false" text="Vinylcorner.fr" />
+      <CheckBox fx:id="lbcoin" layoutX="569.0" layoutY="203.0" mnemonicParsing="false" text="Leboncoin.fr" />
+      <CheckBox fx:id="mesvil" layoutX="569.0" layoutY="234.0" mnemonicParsing="false" text="Mesvinyles.fr" />
+      <CheckBox fx:id="cfactory" layoutX="567.0" layoutY="266.0" mnemonicParsing="false" text="Culturefactory.fr" />
+
+      <TextArea fx:id="rechercheResult" layoutX="2.0" layoutY="376.0" prefHeight="314.0" prefWidth="931.0" />
+      <Label layoutX="179.0" layoutY="276.0" text="€ à" />
+      <Label layoutX="281.0" layoutY="273.0" text="€" />
+      <Button fx:id="btn_recherche" layoutX="98.0" layoutY="321.0" mnemonicParsing="false" onAction="#OnClickRecherce" prefHeight="26.0" prefWidth="87.0" text="Rechercher" />
+      <Button fx:id="effacher" layoutX="231.0" layoutY="321.0" mnemonicParsing="false" onAction="#onClickBtnEffacer" prefHeight="26.0" prefWidth="52.0" text="Effacer" />
+      <ProgressBar layoutX="-4.0" layoutY="358.0" prefHeight="18.0" prefWidth="939.0" progress="0.92" style="-fx-background-color: #7b68ee; -fx-background-radius: 5;" />
+   </children>
+</AnchorPane>
